@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject projectile;
 	public int projectileSpeed;
 
-	private Transform transform;
+	Transform transform;
 
 	// Start is called before the first frame update
 	void Start() {
@@ -17,16 +17,17 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-		Shoot();
+		if (Input.GetKeyDown(oneButton)) {
+			Shoot();
+		}
+
 	}
 
 	private void Shoot() {
-		if (Input.GetKeyDown(oneButton)){
-			Debug.Log("Shooooot");
-			GameObject projectileInstance = Instantiate(projectile);
-			projectileInstance.GetComponent<Transform>().position = transform.position;
-			projectileInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 25);
-			Destroy(projectileInstance, 3);
-		}
+		Debug.Log("Shooooot");
+		GameObject projectileInstance = Instantiate(projectile);
+		projectileInstance.GetComponent<Transform>().position = transform.position;
+		projectileInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 25);
+		Destroy(projectileInstance, 3);
 	}
 }
